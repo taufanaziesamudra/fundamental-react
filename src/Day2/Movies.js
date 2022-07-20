@@ -1,5 +1,9 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
+import Detail from '../Day3/Pages/Detail'
+import Home from '../Day3/Pages/Home'
+import Card from './Card'
 import './style.css'
 
 const Movies = () => {
@@ -18,26 +22,52 @@ const Movies = () => {
     }, [])
 
     return (
-        <div className='style'>
-            <div>
-                <img src={'https://awsimages.detik.net.id/community/media/visual/2021/01/25/godzilla-vs-kong_169.jpeg?w=700&q=90'} height='200px' width='100%' />
+        <Router>
+            <div className='navbar'>
+                <nav>
+                    <ul>
+                        <li><Link to='/'>HOME</Link></li>
+                        {/* <li><Link to='/detail'>DETAIL</Link></li> */}
+                    </ul>
+                </nav>
             </div>
 
-            <div className='list'>
-                {state.map(item => (
-                    <div className='card'>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                {/* <Route path='/detail/:id' element={<Detail />} /> */}
+            </Routes>
+        </Router>
 
-                        <img src={'https://image.tmdb.org/t/p/w500' + item.poster_path} height='150px' width='300px' />
 
-                        <h1>{item.original_title}</h1>
-                        <h5>{item.title}</h5>
-                        <p>{item.overview}</p>
-                        <h4>Penonton : {item.popularity}</h4>
-                        <button>Buy</button>
-                    </div>
-                ))}
-            </div>
-        </div>
+
+
+        // <div className='style'>
+        //     <div>
+        //         <img src={'https://awsimages.detik.net.id/community/media/visual/2021/01/25/godzilla-vs-kong_169.jpeg?w=700&q=90'} height='200px' width='100%' />
+        //     </div>
+
+        //     <div className='list'>
+        //         {state.map(item => (
+        //             <Card movies={item} />
+
+
+
+        //TODO batas
+        // <div className='card'>
+        //     <img src={'https://image.tmdb.org/t/p/w500' + item.poster_path} height='150px' width='300px' />
+
+        //     <h1>{item.original_title}</h1>
+        //     <h5>{item.title}</h5>
+        //     <p>{item.overview}</p>
+        //     <h4>Penonton : {item.popularity}</h4>
+        //     <button>Buy</button> 
+        // </div>
+
+
+
+        //         ))}
+        //     </div>
+        // </div>
     )
 }
 
